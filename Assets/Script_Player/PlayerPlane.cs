@@ -107,5 +107,6 @@ public class PlayerPlane : MonoBehaviour
     private void Oke()
     {
         Debug.Log("testAAAAA");
+        Debug.Log("testBBBB");
     }
 }
