@@ -104,4 +104,7 @@ public class PlayerPlane : MonoBehaviour
         }
         GameManager._i.LoseGame();
     }
+    private void Oke()
+    {
+    }
 }
