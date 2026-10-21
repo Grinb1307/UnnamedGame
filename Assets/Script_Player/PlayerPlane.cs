@@ -16,20 +16,40 @@ public class PlayerPlane : MonoBehaviour
     public int CurrentHP =1;
     private float halfWidth;
     private float halfHeight;
-
+    private SpriteRenderer sr;
     float timer_ban = 0;
     void Start()
     {
         Application.targetFrameRate = 60;
-
+        // 1. Kiểm tra máy bay đã được chọn từ Scene PickCharacter chưa
         
+
         // Lấy kích thước của Sprite máy bay (lấy từ con nếu có) để không bị lòi cánh ra ngoài viền
-        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        // Kiểm tra nếu đã chọn máy bay từ màn hình trước
+        if (PickCharacter.PlaneSprite != null)
+        {
+            sr.sprite = PickCharacter.PlaneSprite;
+        }
+        // 2. Phóng to/thu nhỏ đồng nhất (X và Y BẰNG NHAU để giữ tỉ lệ gốc)
+        // Reset Scale về chuẩn 1
+        sr.transform.localScale = Vector3.one;
+
+        // Lấy tỉ lệ khung hình chuẩn của Sprite gốc
+        float aspectRatio = (float)sr.sprite.rect.width / sr.sprite.rect.height;
+
+        // Đặt chiều rộng mong muốn trong game (ví dụ: 1.5 unit)
+        float desiredWidth = 0.8f;
+        float desiredHeight = desiredWidth / aspectRatio;
+        float scaleX = desiredWidth / sr.bounds.size.x;
+        float scaleY = desiredHeight / sr.bounds.size.y;
+        sr.transform.localScale = new Vector3(scaleX, scaleY, 1f);
         if (sr != null)
         {
             halfWidth = sr.bounds.extents.x;
             halfHeight = sr.bounds.extents.y;
         }
+        sr.name = "Player";
     }
 
     // Update is called once per frame
@@ -98,7 +118,7 @@ public class PlayerPlane : MonoBehaviour
             CurrentHP = 0;
             Destroy(this.gameObject);
         }
-        else if(collision.CompareTag("Pegasus"))
+        else if(collision.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
         }

@@ -129,6 +129,8 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   timer_ban: 0
   CurrentHP: 0
+  isDead: 0
+  anim: {fileID: 0}
   speed: 2
 --- !u!50 &3963473198527768112
 Rigidbody2D:
@@ -191,7 +193,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.015436292, y: 0}
+  m_Offset: {x: -0.007522881, y: 0.2107873}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -201,5 +203,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.6408725, y: 1.13}
+  m_Size: {x: 1.6008524, y: 0.5913172}
   m_EdgeRadius: 0

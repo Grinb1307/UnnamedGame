@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuGame");
     }
 
     void Update()

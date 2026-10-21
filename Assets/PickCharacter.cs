@@ -1,18 +1,25 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PickCharacter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public static GameObject ChosenCharacterObject;
+    // Biến static để giữ ảnh máy bay xuyên qua Scene mới
+    public static Sprite PlaneSprite;
 
-    public void SelectCharacterObject(GameObject characterObj)
+    public void ChooseThisPlane()
     {
-        ChosenCharacterObject = characterObj;
+        // Vì script đã gắn TRỰC TIẾP lên nút First, 
+        // GetComponent<Image>() sẽ lấy đúng Image của nút First!
+        Image img = GetComponent<Image>();
 
-        // Giữ GameObject này không bị xóa khi load sang MainGame
-        DontDestroyOnLoad(characterObj);
+        if (img != null && img.sprite != null)
+        {
+            PlaneSprite = img.sprite; // Lưu lại Sprite của máy bay này
+            Debug.Log("Đã chọn máy bay: " + PlaneSprite.name);
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainGame");
+            // Chuyển sang MainGame (Lưu ý: Tên Scene phải chính xác)
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainGame");
+        }
     }
 }
